@@ -20,7 +20,7 @@ class EditRole extends Component
     public function mount($role)
     {
         $this->role = $role;
-        $roleData = Role::find($role);
+        $roleData = Role::with('permissions')->find($role);
         $this->roleData = $roleData;
         $this->roleName = $roleData->name;
         $this->guardName = $roleData->guard_name;

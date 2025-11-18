@@ -14,8 +14,8 @@ class LogsPage extends Component
     {
         $this->authorize('viewAny', Activity::class);
 
-        $logs = \Spatie\Activitylog\Models\Activity::latest()->paginate(10);
-        $allLogs = \Spatie\Activitylog\Models\Activity::all();
+        $logs = \Spatie\Activitylog\Models\Activity::with('causer', 'subject')->latest()->paginate(10);
+        $allLogs = \Spatie\Activitylog\Models\Activity::with('causer', 'subject')->get();
         return view('livewire.logs.logs-page', compact('logs', 'allLogs'));
     }
 }

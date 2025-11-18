@@ -20,8 +20,7 @@ class Index extends Component
 
     public function getData()
     {
-
-        $query = Role::query();
+        $query = Role::query()->with('permissions');
 
         if ($this->search) {
             $this->resetPage();

@@ -30,9 +30,7 @@ class UserEdit extends Component
     public function mount($user)
     {
         // التحقق من الصلاحية
-        $this->authorize('update', User::class);
-        // جلب بيانات المستخدم بناءً على المعرف وتمريرها إلى الخصائص
-        $userData = User::find($user);
+        $userData = User::with('roles')->find($user);
         $this->user = $userData;
         $this->name = $userData->name;
         $this->email = $userData->email;
